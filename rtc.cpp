@@ -8,16 +8,17 @@
 
 --[Mark3 Realtime Platform]--------------------------------------------------
 
-Copyright (c) 2014 Funkenstein Software Consulting, all rights reserved.
+Copyright (c) 2014 m0slevin, all rights reserved.
 See license.txt for more information
 ===========================================================================*/
-/*!
-    \file rtc.cpp
-    \brief Real-time clock class for general time-keeping and system uptime.
+/**
+    @file rtc.cpp
+    @brief Real-time clock class for general time-keeping and system uptime.
 */
 
 #include "rtc.h"
-namespace Mark3 {
+namespace Mark3
+{
 //---------------------------------------------------------------------------
 static const uint8_t s_au8DaysPerMonth[] = { 31, // jan
                                              28, // feb
@@ -151,7 +152,7 @@ void RTC::AddTime(uint32_t u32Ticks_)
         }
 
         m_stCalendar.u8Day  = 0;
-        int next_month = static_cast<int>(m_stCalendar.eMonth) + 1;
+        int next_month      = static_cast<int>(m_stCalendar.eMonth) + 1;
         m_stCalendar.eMonth = static_cast<Month>(next_month);
         if (m_stCalendar.eMonth != Month::Months_Per_Year) {
             break;
@@ -191,7 +192,8 @@ bool RTC::YearContainsLeapDay(uint16_t u16Year_)
 {
     if ((u16Year_ % 100) == 0) {
         return (u16Year_ % 400) == 0;
-    } return (u16Year_ & 3) == 0;
+    }
+    return (u16Year_ & 3) == 0;
 }
 
 //---------------------------------------------------------------------------
@@ -205,9 +207,7 @@ void RTC::ComputeDayOfWeek()
     }
     u32Days--;
 
-    for (int iMonth = static_cast<int>(Month::January);
-         iMonth < static_cast<int>(m_stCalendar.eMonth); iMonth++) {
-
+    for (int iMonth = static_cast<int>(Month::January); iMonth < static_cast<int>(m_stCalendar.eMonth); iMonth++) {
         if (YearContainsLeapDay(m_stCalendar.u16Year) && (iMonth == static_cast<int>(Month::February))) {
             u32Days += 29;
         } else {
@@ -219,4 +219,4 @@ void RTC::ComputeDayOfWeek()
 
     m_stCalendar.eDayOfWeek = static_cast<Day>(u32Days);
 }
-} //namespace Mark3
+} // namespace Mark3

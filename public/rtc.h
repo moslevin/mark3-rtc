@@ -8,12 +8,12 @@
 
 --[Mark3 Realtime Platform]--------------------------------------------------
 
-Copyright (c) 2014 Funkenstein Software Consulting, all rights reserved.
+Copyright (c) 2014 m0slevin, all rights reserved.
 See license.txt for more information
 ===========================================================================*/
-/*!
-    \file rtc.h
-    \brief Real-time clock class for general time-keeping and system uptime.
+/**
+    @file rtc.h
+    @brief Real-time clock class for general time-keeping and system uptime.
 */
 
 #pragma once
@@ -28,7 +28,6 @@ See license.txt for more information
 
 namespace Mark3
 {
-
 //---------------------------------------------------------------------------
 enum class Month : uint8_t {
     January,
@@ -76,11 +75,11 @@ typedef struct {
 class RTC
 {
 public:
-    void Init(uint32_t u32TicksPerSecond_);
-    uint8_t SetDateTime(const calendar_t* pstCal_);
-    bool GetDateTime(calendar_t* pstCal_);
-    bool GetUptime(uint32_t* pu32Seconds_, uint32_t* pu32Ticks_);
-    void AddTime(uint32_t u32Ticks_);
+    void        Init(uint32_t u32TicksPerSecond_);
+    uint8_t     SetDateTime(const calendar_t* pstCal_);
+    bool        GetDateTime(calendar_t* pstCal_);
+    bool        GetUptime(uint32_t* pu32Seconds_, uint32_t* pu32Ticks_);
+    void        AddTime(uint32_t u32Ticks_);
     const char* GetMonthName();
     const char* GetDayOfWeek();
 
@@ -93,4 +92,4 @@ private:
     uint32_t   m_u32Seconds;
 };
 
-} //namespace Mark3
+} // namespace Mark3
